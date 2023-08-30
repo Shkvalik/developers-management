@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+  <!-- Action For Developers Menu -->
+  <record id="action_developers_management" model="ir.actions.act_window">
+    <field name="name">Developers</field>
+    <field name="res_model">developers.management.developer</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{'search_default_group_type': 1}</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Managing your developers right here
+      </p>
+    </field>
+  </record>
+
+  <!-- Action For Add Developer Menu -->
+  <record id="action_add_developer_form" model="ir.actions.act_window">
+    <field name="name">Add Developer</field>
+    <field name="res_model">developers.management.developer</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="developer_form_view"/>
+    <field name="target">new</field>
+  </record>
+
+  <!-- View For Developer Form -->
+  <record id="developer_form_view" model="ir.ui.view">
+    <field name="name">developer.form.view</field>
+    <field name="model">developers.management.developer</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"></field>
+            <field name="type"></field>
+            <field name="global_identification"></field>
+            <field name="company_id"/>
+            <field name="phone" attrs="{'invisible':[('type', '=', 'out-stuff')]}"></field>
+            <field name="email"></field>
+            <field name="birthdate"></field>
+            <field name="address"></field>
+          </group>
+        </sheet>
+        <footer>
+          <button string="Save" type="object" class="oe_highlight" name="action_save"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!--  Tree View  -->
+  <record id="developer_tree_view" model="ir.ui.view">
+    <field name="name">developer.tree.view</field>
+    <field name="model">developers.management.developer</field>
+    <field name="arch" type="xml">
+      <tree create="0">
+        <field name="name"></field>
+        <field name="type"></field>
+        <field name="company_id" widget="many2one"></field>
+        <field name="global_identification"></field>
+        <field name="phone" attrs="{'invisible':[('type', '=', 'out-stuff')]}"></field>
+        <field name="email"></field>
+        <field name="birthdate"></field>
+        <field name="address"></field>
+      </tree>
+    </field>
+  </record>
+
+
+  <!-- Search View -->
+  <record model="ir.ui.view" id="view_search_developer">
+    <field name="name">Developer Search View</field>
+    <field name="model">developers.management.developer</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name" string="Developer Name" filter_domain="[('name', 'ilike', self)]"/>
+        <field name="phone" string="Developer Phone" filter_domain="[('phone', 'ilike', self)]"/>
+        <field name="type" string="Developer Type" filter_domain="[('type', '=ilike', self)]"/>
+        <group expand="0" string="Group By">
+          <filter string="Type" name="group_type" context="{'group_by': 'type'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+</odoo>
