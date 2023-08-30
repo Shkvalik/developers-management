@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Menu items -->
+  <menuitem
+      id="menu_developers_management_root"
+      name="Developers Managements"
+      sequence="0"
+  />
+
+  <!-- Submenu items -->
+    <!-- Developer Submenu items -->
+  <menuitem
+      id="menu_developers"
+      name="Developers"
+      parent="menu_developers_management_root"
+      sequence="0"
+  />
+  <menuitem
+      id="menu_view_developers"
+      name="View Developers"
+      action="action_developers_management"
+      parent="menu_developers"
+      sequence="0"
+  />
+  <menuitem
+      id="menu_developers_add"
+      name="Add Developer"
+      action="action_add_developer_form"
+      parent="menu_developers"
+      sequence="1"
+  />
+   <!-- Company Submenu items -->
+  <menuitem
+      id="menu_companies"
+      name="Companies"
+      parent="menu_developers_management_root"
+      sequence="0"
+  />
+  <menuitem
+      id="menu_view_companies"
+      name="View Companies"
+      action="action_companies_management"
+      parent="menu_companies"
+      sequence="0"
+  />
+  <menuitem
+      id="menu_companies_add"
+      name="Add Company"
+      action="action_add_company_form"
+      parent="menu_companies"
+      sequence="1"
+  />
+</odoo>
