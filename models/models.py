@@ -46,7 +46,7 @@ class Developer(models.Model):
             })
         return {
             'type': 'ir.actions.act_window',
-            'res_model': 'developers.management.company',
+            'res_model': 'developers.management.developer',
             'view_mode': 'form',
             'res_id': self.id,
             'target': 'current',
