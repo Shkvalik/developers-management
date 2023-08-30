@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+  <!-- Action For Developers Menu -->
+  <record id="action_companies_management" model="ir.actions.act_window">
+    <field name="name">Companies</field>
+    <field name="res_model">developers.management.company</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Managing Your Companies Right Here
+      </p>
+    </field>
+  </record>
+
+  <!-- Action For Add Developer Menu -->
+  <record id="action_add_company_form" model="ir.actions.act_window">
+    <field name="name">Add Company</field>
+    <field name="res_model">developers.management.company</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="company_form_view"/>
+    <field name="target">new</field>
+  </record>
+
+  <!-- View For Developer Form -->
+  <record id="company_form_view" model="ir.ui.view">
+    <field name="name">company.form.view</field>
+    <field name="model">developers.management.company</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"></field>
+            <field name="address"></field>
+            <field name="developer_ids" widget="many2many"/>
+          </group>
+        </sheet>
+        <footer>
+          <button string="Save" type="object" class="oe_highlight" name="action_save"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!--  Tree View  -->
+  <record id="company_tree_view" model="ir.ui.view">
+    <field name="name">company.tree.view</field>
+    <field name="model">developers.management.company</field>
+    <field name="arch" type="xml">
+      <tree create="0">
+        <field name="name"></field>
+        <field name="address"></field>
+      </tree>
+    </field>
+  </record>
+
+
+  <!-- Search View -->
+  <record model="ir.ui.view" id="view_search_company">
+    <field name="name">Company Search View</field>
+    <field name="model">developers.management.company</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name" string="Company Name" filter_domain="[('name', 'ilike', self)]"/>
+        <field name="developer_ids" string="Company Developers" filter_domain="[('developer_ids', 'ilike', self)]"/>
+      </search>
+    </field>
+  </record>
+
+</odoo>
