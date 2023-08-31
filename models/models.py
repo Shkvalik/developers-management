@@ -34,8 +34,8 @@ class Developer(models.Model):
                 developer.global_identification = f"{developer.name}-{developer.type}"
 
     def action_save(self):
-        if self:
-            self.create({
+        if self.id:
+            self.write({
                 'name': self.name,
                 'type': self.type,
                 'company_id': self.company_id,
@@ -62,8 +62,8 @@ class Company(models.Model):
     developer_ids = fields.One2many('developers.management.developer', 'company_id', string='Developers')
 
     def action_save(self):
-        if self:
-            self.create({
+        if self.id:
+            self.write({
                 'name': self.name,
                 'address': self.address,
             })
