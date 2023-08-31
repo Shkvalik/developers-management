@@ -42,9 +42,8 @@
           </group>
         </sheet>
         <footer>
-          <button string="Save" type="object" class="oe_highlight" name="action_save"/>
-          or
-          <button string="Cancel" class="oe_link" special="cancel"/>
+          <button string="Save" type="object" class="oe_highlight" name="action_save" attrs="{'invisible': [('id', '!=', False)]}"/>
+          <button string="Cancel" class="oe_link" special="cancel" attrs="{'invisible': [('id', '!=', False)]}"/>
         </footer>
       </form>
     </field>
