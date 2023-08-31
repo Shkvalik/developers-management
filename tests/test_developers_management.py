@@ -10,11 +10,11 @@ class TestDevelopersManagement(TransactionCase):
 
     def test_create_company_with_developers(self):
         # Create developers
-        developer1 = self.Developer.write({'name': 'John',
+        developer1 = self.Developer.create({'name': 'John',
                                             'type': 'backend',
                                             'phone': '123456789',
                                             'email': 'john@example.com', })
-        developer2 = self.Developer.write({'name': 'Sam',
+        developer2 = self.Developer.create({'name': 'Sam',
                                             'type': 'fullstack',
                                             'phone': '123123123',
                                             'email': 'sam@example.com', })
@@ -25,7 +25,7 @@ class TestDevelopersManagement(TransactionCase):
             'address': 'Test Address',
             'developer_ids': [(4, developer1.id), (4, developer2.id)]
         }
-        company = self.Company.write(company_vals)
+        company = self.Company.create(company_vals)
 
         # Check correct definition of global_identification
         self.assertEqual(developer1.global_identification, 'John-backend', )
